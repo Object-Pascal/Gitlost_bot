@@ -30,10 +30,10 @@ namespace Gitlost_bot.Handlers.Bots
         {
             //state = BotState.Running;
 
-            //string token = ""; 
+            //string token = "";
             throw new NotImplementedException("Enter your bot token in the string variable above first to enable functionality!");
 
-            //await _client.SetGameAsync("v1.1.0");
+            //await _client.SetGameAsync("v1.1.1");
 
             //this.logCallback = logCallback;
             //_client.Log += logCallback;

@@ -173,10 +173,19 @@ namespace Gitlost_bot.Handlers.Bots
                     message.AppendLine(((ISocketMessageChannel)Context.Client.GetChannel(c)).Name);
                 });
 
-                builder.WithTitle("Registered channels for this server")
+                if (JsonHandler.channels.Count > 0)
+                {
+                    builder.WithTitle("Registered channels for this server")
                     .WithDescription(message.ToString())
                     .WithColor(Color.Blue);
-                await ReplyAsync("", false, builder.Build());
+                    await ReplyAsync("", false, builder.Build());
+                }
+                else
+                {
+                    builder.WithDescription($"There are no channels registered (yet).\nType '!gl | !gitlost register' to register a channel to the newest post feed.")
+                        .WithColor(Color.Blue);
+                    await ReplyAsync("", false, builder.Build());
+                }
             }
         }
 
