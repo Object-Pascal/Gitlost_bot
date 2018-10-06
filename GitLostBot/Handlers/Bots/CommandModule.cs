@@ -1,15 +1,15 @@
 ﻿using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
-using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GitLostBot.Handlers.IO;
+using Gitlost_bot.Handlers.IO;
 using Newtonsoft.Json.Linq;
 
-namespace GitLostBot.Handlers.Bots
+namespace Gitlost_bot.Handlers.Bots
 {
     public class CommandModule : ModuleBase<SocketCommandContext>
     {
@@ -263,146 +263,6 @@ namespace GitLostBot.Handlers.Bots
             builder.WithDescription("https://twitter.com/gitlost")
                 .WithColor(Color.Blue);
             await ReplyAsync("", false, builder.Build());
-        }
-
-        #endregion
-
-        #region NiceGuy bot
-
-        [Command("target")]
-        public async Task target([Remainder] SocketUser remainder)
-        {
-            int argPos = 0; if (!(Context.Message.HasStringPrefix("!niceguy ", ref argPos) || Context.Message.HasStringPrefix("!ng ", ref argPos))) return;
-
-            EmbedBuilder builder = new EmbedBuilder();
-            Random rnd = new Random();
-            string[] nags = new string[]
-            {
-                $"{remainder.Mention} is gay",
-                $"{remainder.Mention} is a homo",
-                $"{remainder.Mention} is the big gay",
-                $"{remainder.Mention} has the big gay",
-                $"{remainder.Mention} has osteoperosis",
-                $"{remainder.Mention} has crippling depression",
-                $"{remainder.Mention} likes the big peepee",
-                $"{remainder.Mention} likes :b::b::regional_indicator_c:",
-                $"{remainder.Mention} likes man bums",
-                $"{remainder.Mention} is homosexual",
-                $"{remainder.Mention} no like the boobies",
-                $"{remainder.Mention} is from the other side",
-                $"{remainder.Mention} likes ~~girls~~ men",
-                $"{remainder.Mention} likes muscled men",
-                $"{remainder.Mention} is overall very gay",
-                $"{remainder.Mention} succs the big peepee",
-                $"{remainder.Mention} S U C C peepee"
-            };
-
-            builder.WithDescription(nags[rnd.Next(1, nags.Length) - 1])
-                .WithAuthor(Context.Message.Author)
-                .WithColor(Color.Red);
-            await ReplyAsync("", false, builder.Build());            
-        }
-
-        [Command("target")]
-        public async Task target([Remainder] SocketRole remainder)
-        {
-            int argPos = 0; if (!(Context.Message.HasStringPrefix("!niceguy ", ref argPos) || Context.Message.HasStringPrefix("!ng ", ref argPos))) return;
-
-            if (remainder != null)
-            {
-                EmbedBuilder builder = new EmbedBuilder();
-                StringBuilder output = new StringBuilder();
-                Random rnd = new Random();
-
-                SocketGuildUser[] users = Context.Guild.Users.ToArray();
-
-                for (int i = 0; i < users.Length; i++)
-                {
-                    SocketRole role = Context.Guild.GetRole(users[i].Id);
-
-                    if (!users[i].IsBot && users[i].Roles.Contains(remainder))
-                    {
-                        string[] nags = new string[]
-                        {
-                            $"{users[i].Mention} is gay",
-                            $"{users[i].Mention} is a homo",
-                            $"{users[i].Mention} is the big gay",
-                            $"{users[i].Mention} has the big gay",
-                            $"{users[i].Mention} has osteoperosis",
-                            $"{users[i].Mention} has crippling depression",
-                            $"{users[i].Mention} likes the big peepee",
-                            $"{users[i].Mention} likes :b::b::regional_indicator_c:",
-                            $"{users[i].Mention} likes men bums",
-                            $"{users[i].Mention} is homosexual",
-                            $"{users[i].Mention} likes man bulges",
-                            $"{users[i].Mention} no like the boobies",
-                            $"{users[i].Mention} is from the other side",
-                            $"{users[i].Mention} likes ~~girls~~ men",
-                            $"{users[i].Mention} likes muscled men",
-                            $"{users[i].Mention} is overall very gay",
-                            $"{users[i].Mention} succs the big peepee",
-                            $"{users[i].Mention} S U C C peepee"
-                        };
-                        output.AppendLine(nags[rnd.Next(1, nags.Length) - 1]);
-                        if (i != users.Length - 1) output.AppendLine("");
-                    }
-                }
-
-                builder.WithDescription(output.ToString())
-                    .WithAuthor(Context.Message.Author)
-                    .WithColor(Color.Red);
-                await ReplyAsync("", false, builder.Build());
-            }
-        }
-
-        [Command("target")]
-        public async Task target([Remainder] string remainder)
-        {
-            int argPos = 0; if (!(Context.Message.HasStringPrefix("!niceguy ", ref argPos) || Context.Message.HasStringPrefix("!ng ", ref argPos))) return;
-
-            if (remainder == "@everyone")
-            {
-                EmbedBuilder builder = new EmbedBuilder();
-                StringBuilder output = new StringBuilder();
-                Random rnd = new Random();
-
-                SocketGuildUser[] users = Context.Guild.Users.ToArray();
-
-                for (int i = 0; i < users.Length; i++)
-                {
-                    if (!users[i].IsBot)
-                    {
-                        string[] nags = new string[]
-                        {
-                            $"{users[i].Mention} is gay",
-                            $"{users[i].Mention} is a homo",
-                            $"{users[i].Mention} is the big gay",
-                            $"{users[i].Mention} has the big gay",
-                            $"{users[i].Mention} has osteoperosis",
-                            $"{users[i].Mention} has crippling depression",
-                            $"{users[i].Mention} likes the big peepee",
-                            $"{users[i].Mention} likes :b::b::regional_indicator_c:",
-                            $"{users[i].Mention} likes men bums",
-                            $"{users[i].Mention} is homosexual",
-                            $"{users[i].Mention} likes man bulges",
-                            $"{users[i].Mention} no like the boobies",
-                            $"{users[i].Mention} is from the other side",
-                            $"{users[i].Mention} likes ~~girls~~ men",
-                            $"{users[i].Mention} likes muscled men",
-                            $"{users[i].Mention} is overall very gay",
-                            $"{users[i].Mention} succs the big peepee",
-                            $"{users[i].Mention} S U C C peepee"
-                        };
-                        output.AppendLine(nags[rnd.Next(1, nags.Length) - 1]);
-                        if (i != users.Length - 1) output.AppendLine("");
-                    }
-                }
-
-                builder.WithDescription(output.ToString())
-                    .WithAuthor(Context.Message.Author)
-                    .WithColor(Color.Red);
-                await ReplyAsync("", false, builder.Build());
-            }
         }
 
         #endregion

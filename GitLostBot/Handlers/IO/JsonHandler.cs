@@ -1,11 +1,10 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 
-namespace GitLostBot.Handlers.IO
+namespace Gitlost_bot.Handlers.IO
 {
     public static class JsonHandler
     {

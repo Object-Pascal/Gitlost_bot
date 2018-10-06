@@ -1,4 +1,4 @@
-﻿namespace GitLostBot
+﻿namespace Gitlost_bot
 {
     partial class BotMaNiceGuyer
     {

@@ -1,18 +1,14 @@
 ﻿using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
-using GitLostBot.Handlers.Bots.Gitlost;
+using Gitlost_bot.Handlers.Bots.Gitlost;
 using Microsoft.Extensions.DependencyInjection;
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Threading;
 
-namespace GitLostBot.Handlers.Bots
+namespace Gitlost_bot.Handlers.Bots
 {
     public enum BotState
     {

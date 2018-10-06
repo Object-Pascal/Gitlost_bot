@@ -148,7 +148,6 @@
     <Compile Include="Handlers\Bots\Gitlost\GitLostHandler.cs" />
     <Compile Include="Handlers\Bots\CommandModule.cs" />
     <Compile Include="Handlers\Bots\Gitlost\GitLostTimedChecker.cs" />
-    <Compile Include="Handlers\Bots\Nag\NiceGuyHandler.cs" />
     <Compile Include="Handlers\Fetcher.cs" />
     <Compile Include="Handlers\IO\JsonHandler.cs" />
     <Compile Include="Program.cs" />

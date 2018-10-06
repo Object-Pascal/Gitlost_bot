@@ -1,21 +1,17 @@
 ﻿using Discord;
 using Discord.WebSocket;
-using GitLostBot.Handlers;
-using GitLostBot.Handlers.Bots;
-using GitLostBot.Handlers.Bots.Gitlost;
-using GitLostBot.Handlers.IO;
+using Gitlost_bot.Handlers.Bots;
+using Gitlost_bot.Handlers.Bots.Gitlost;
+using Gitlost_bot.Handlers.IO;
 using Newtonsoft.Json.Linq;
+
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GitLostBot
+namespace Gitlost_bot
 {
     public partial class BotMaNiceGuyer : Form
     {
@@ -24,7 +20,6 @@ namespace GitLostBot
         private string[] lastPost;
 
         private GitLostHandler gitlostHandler;
-        private NiceGuyHandler NiceGuyHandler;
 
         private GitLostTimedChecker gitlostchecker;
 
@@ -45,7 +40,6 @@ namespace GitLostBot
             lastPost = null;
 
             gitlostHandler = new GitLostHandler();
-            NiceGuyHandler = new NiceGuyHandler();
 
             gitlostchecker = new GitLostTimedChecker(30000, NewPostFound_Tick);
             NewPostFound_Tick();
@@ -54,13 +48,9 @@ namespace GitLostBot
             btnStartGitLostBot.Click += (s, e) => StartGitLostBot();
             btnStopGitLostBot.Click += (s, e) => StopGitLostBot();
 
-            btnStartNiceGuyBot.Click += (s, e) => StartNiceGuyBot();
-            btnStopNiceGuyBot.Click += (s, e) => StopNiceGuyBot();
-
             this.Load += (s, e) =>
             {
-                //StartGitLostBot();
-                StartNiceGuyBot();
+                StartGitLostBot();
             };
         }
 
@@ -144,43 +134,6 @@ namespace GitLostBot
                     }
                 }
             }
-        }
-
-        #endregion
-
-        #region irritantobot
-
-        private async void StartNiceGuyBot()
-        {
-            if (NiceGuyHandler.state != BotState.Running)
-            {
-                NiceGuyHandler = new NiceGuyHandler();
-
-                btnStartNiceGuyBot.Enabled = false;
-                btnStopNiceGuyBot.Enabled = true;
-
-                await NiceGuyHandler.Start(NiceGuyLog);
-            }
-        }
-
-        private async void StopNiceGuyBot()
-        {
-            if (NiceGuyHandler.state != BotState.Stopped)
-            {
-                await NiceGuyHandler.Stop();
-                btnStartNiceGuyBot.Enabled = true;
-                btnStopNiceGuyBot.Enabled = false;
-            }
-        }
-
-        private Task NiceGuyLog(LogMessage args)
-        {
-            txtNiceGuyLog.Invoke((MethodInvoker)delegate
-            {
-                txtNiceGuyLog.Text += args + Environment.NewLine;
-                txtNiceGuyLog.ScrollToCaret();
-            });
-            return Task.CompletedTask;
         }
 
         #endregion

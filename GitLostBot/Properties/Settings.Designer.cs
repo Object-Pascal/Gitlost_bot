@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GitLostBot.Properties
+namespace Gitlost_bot.Properties
 {
 
 
