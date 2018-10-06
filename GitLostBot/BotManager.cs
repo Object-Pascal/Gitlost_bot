@@ -1,5 +1,6 @@
 ﻿using Discord;
 using Discord.WebSocket;
+using Gitlost_bot.Handlers;
 using Gitlost_bot.Handlers.Bots;
 using Gitlost_bot.Handlers.Bots.Gitlost;
 using Gitlost_bot.Handlers.IO;
@@ -13,7 +14,7 @@ using System.Windows.Forms;
 
 namespace Gitlost_bot
 {
-    public partial class BotMaNiceGuyer : Form
+    public partial class BotManager : Form
     {
         private PostState poststate;
 
@@ -23,7 +24,7 @@ namespace Gitlost_bot
 
         private GitLostTimedChecker gitlostchecker;
 
-        public BotMaNiceGuyer()
+        public BotManager()
         {
             InitializeComponent();
             LoadFeedChannels();
@@ -31,10 +32,6 @@ namespace Gitlost_bot
             txtGitLostLog.ReadOnly = true;
             btnStartGitLostBot.Enabled = true;
             btnStopGitLostBot.Enabled = false;
-
-            txtNiceGuyLog.ReadOnly = true;
-            btnStartNiceGuyBot.Enabled = true;
-            btnStopNiceGuyBot.Enabled = false;
 
             poststate = PostState.FirstBoot;
             lastPost = null;
@@ -50,7 +47,7 @@ namespace Gitlost_bot
 
             this.Load += (s, e) =>
             {
-                StartGitLostBot();
+                //StartGitLostBot();
             };
         }
 

@@ -1,6 +1,6 @@
 ﻿namespace Gitlost_bot
 {
-    partial class BotMaNiceGuyer
+    partial class BotManager
     {
         /// <summary>
         /// Required designer variable.
@@ -10,7 +10,7 @@
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
-        /// <param name="disposing">true if maNiceGuyed resources should be disposed; otherwise, false.</param>
+        /// <param name="disposing">true if manager resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -33,13 +33,8 @@
             this.btnStopGitLostBot = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tbPageScraper = new System.Windows.Forms.TabPage();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.txtNiceGuyLog = new System.Windows.Forms.TextBox();
-            this.btnStopNiceGuyBot = new System.Windows.Forms.Button();
-            this.btnStartNiceGuyBot = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tbPageScraper.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnStartGitLostBot
@@ -77,7 +72,6 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tbPageScraper);
-            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -97,64 +91,17 @@
             this.tbPageScraper.Text = "Gitlost bot";
             this.tbPageScraper.UseVisualStyleBackColor = true;
             // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.txtNiceGuyLog);
-            this.tabPage1.Controls.Add(this.btnStopNiceGuyBot);
-            this.tabPage1.Controls.Add(this.btnStartNiceGuyBot);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(672, 391);
-            this.tabPage1.TabIndex = 1;
-            this.tabPage1.Text = "NiceGuy bot";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // txtNiceGuyLog
-            // 
-            this.txtNiceGuyLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNiceGuyLog.BackColor = System.Drawing.Color.White;
-            this.txtNiceGuyLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtNiceGuyLog.Location = new System.Drawing.Point(6, 35);
-            this.txtNiceGuyLog.Multiline = true;
-            this.txtNiceGuyLog.Name = "txtNiceGuyLog";
-            this.txtNiceGuyLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtNiceGuyLog.Size = new System.Drawing.Size(660, 350);
-            this.txtNiceGuyLog.TabIndex = 4;
-            // 
-            // btnStopNiceGuyBot
-            // 
-            this.btnStopNiceGuyBot.Location = new System.Drawing.Point(346, 6);
-            this.btnStopNiceGuyBot.Name = "btnStopNiceGuyBot";
-            this.btnStopNiceGuyBot.Size = new System.Drawing.Size(100, 23);
-            this.btnStopNiceGuyBot.TabIndex = 2;
-            this.btnStopNiceGuyBot.Text = "Stop bot";
-            this.btnStopNiceGuyBot.UseVisualStyleBackColor = true;
-            // 
-            // btnStartNiceGuyBot
-            // 
-            this.btnStartNiceGuyBot.Location = new System.Drawing.Point(240, 6);
-            this.btnStartNiceGuyBot.Name = "btnStartNiceGuyBot";
-            this.btnStartNiceGuyBot.Size = new System.Drawing.Size(100, 23);
-            this.btnStartNiceGuyBot.TabIndex = 3;
-            this.btnStartNiceGuyBot.Text = "Start bot";
-            this.btnStartNiceGuyBot.UseVisualStyleBackColor = true;
-            // 
-            // BotMaNiceGuyer
+            // Gitlost_bot
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(704, 441);
             this.Controls.Add(this.tabControl1);
-            this.Name = "BotMaNiceGuyer";
-            this.Text = "BotMaNiceGuyer";
+            this.Name = "Gitlost_bot";
+            this.Text = "Gitlost Bot";
             this.tabControl1.ResumeLayout(false);
             this.tbPageScraper.ResumeLayout(false);
             this.tbPageScraper.PerformLayout();
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -166,10 +113,6 @@
         private System.Windows.Forms.Button btnStopGitLostBot;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tbPageScraper;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TextBox txtNiceGuyLog;
-        private System.Windows.Forms.Button btnStopNiceGuyBot;
-        private System.Windows.Forms.Button btnStartNiceGuyBot;
     }
 }
 
