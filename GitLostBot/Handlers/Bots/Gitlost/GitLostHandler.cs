@@ -28,21 +28,21 @@ namespace Gitlost_bot.Handlers.Bots
 
         public async Task Start(Func<LogMessage, Task> logCallback)
         {
-            state = BotState.Running;
+            //state = BotState.Running;
 
-            string token = "NDkxOTk4OTY1Nzg5NzUzMzY0.Dppk6A.q21w_6RwskXb2x2Mdy744q72LQ4"; 
-            //throw new NotImplementedException("Enter your bot token in the string variable above first to enable functionality!");
+            //string token = ""; 
+            throw new NotImplementedException("Enter your bot token in the string variable above first to enable functionality!");
 
-            await _client.SetGameAsync("v1.0.1");
+            //await _client.SetGameAsync("v1.0.1");
 
-            this.logCallback = logCallback;
-            _client.Log += logCallback;
-            _client.MessageReceived += HandleCommandAsync;
+            //this.logCallback = logCallback;
+            //_client.Log += logCallback;
+            //_client.MessageReceived += HandleCommandAsync;
 
-            await _commands.AddModulesAsync(Assembly.GetEntryAssembly());
-            await _client.LoginAsync(TokenType.Bot, token);
-            await _client.StartAsync();
-            await Task.Delay(-1);
+            //await _commands.AddModulesAsync(Assembly.GetEntryAssembly());
+            //await _client.LoginAsync(TokenType.Bot, token);
+            //await _client.StartAsync();
+            //await Task.Delay(-1);
         }
 
         private async Task HandleCommandAsync(SocketMessage arg)
