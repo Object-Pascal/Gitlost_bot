@@ -11,9 +11,18 @@ namespace Gitlost_bot
         [STAThread]
         static void Main()
         {
+            AssureChannelsFile();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new BotManager());
+            Application.Run(new Gitlost_bot());
+        }
+
+        private static void AssureChannelsFile()
+        {
+            string saveFolder = System.IO.Directory.GetCurrentDirectory();
+            string savePath = System.IO.Path.Combine(saveFolder, "channels.json");
+            if (!Handlers.IO.JsonHandler.Exists(savePath))
+                System.IO.File.WriteAllText(savePath, @"{ ""channels"": [] }");
         }
     }
 }

@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace Gitlost_bot
 {
-    public partial class BotManager : Form
+    public partial class Gitlost_bot : Form
     {
         private PostState poststate;
 
@@ -24,7 +24,7 @@ namespace Gitlost_bot
 
         private GitLostTimedChecker gitlostchecker;
 
-        public BotManager()
+        public Gitlost_bot()
         {
             InitializeComponent();
             LoadFeedChannels();
@@ -37,21 +37,14 @@ namespace Gitlost_bot
             lastPost = null;
 
             gitlostHandler = new GitLostHandler();
-
             gitlostchecker = new GitLostTimedChecker(30000, NewPostFound_Tick);
-            NewPostFound_Tick();
             gitlostchecker.Start();
 
             btnStartGitLostBot.Click += (s, e) => StartGitLostBot();
             btnStopGitLostBot.Click += (s, e) => StopGitLostBot();
 
-            this.Load += (s, e) =>
-            {
-                //StartGitLostBot();
-            };
+            this.Load += (s, e) => StartGitLostBot();
         }
-
-        #region gitlostbot
 
         private async void StartGitLostBot()
         {
@@ -73,7 +66,14 @@ namespace Gitlost_bot
                 btnStartGitLostBot.Enabled = true;
                 btnStopGitLostBot.Enabled = false;
             }
-        }                                                                                               
+        }
+
+        private async void LoadFeedChannels()
+        {
+            JToken token = JObject.Parse(await JsonHandler.LoadFile("channels.json"));
+            JArray coll = (JArray)token.SelectToken("channels");
+            JsonHandler.UpdateChannels(coll.ToArray());
+        }
 
         private Task GitLostLog(LogMessage args)
         {
@@ -83,13 +83,6 @@ namespace Gitlost_bot
                 txtGitLostLog.ScrollToCaret();
             });
             return Task.CompletedTask;
-        }
-
-        private async void LoadFeedChannels()
-        {
-            JToken token = JObject.Parse(await JsonHandler.LoadFile("channels.json"));
-            JArray coll = (JArray)token.SelectToken("channels");
-            JsonHandler.UpdateChannels(coll.ToArray());
         }
 
         private async void NewPostFound_Tick()
@@ -103,14 +96,13 @@ namespace Gitlost_bot
                     {
                         poststate = PostState.Ready;
                         lastPost = posts[0];
-                        await GitLostLog(new LogMessage(LogSeverity.Info, "Client", $"Initial boot, latest tweet set as last post"));
+                        await GitLostLog(new LogMessage(LogSeverity.Info, "Client", "Initial boot, latest tweet set as last post"));
                     }
                     else
                     {
                         if (posts[0][0] != lastPost[0])
                         {
                             lastPost = posts[0];
-
                             EmbedBuilder builder = new EmbedBuilder();
 
                             builder.WithTitle($"[Auto] Developers Swearing @gitlost • {lastPost[1]}")
@@ -122,17 +114,15 @@ namespace Gitlost_bot
                                 await (gitlostHandler._client.GetChannel(c) as ISocketMessageChannel).SendMessageAsync("", false, builder.Build());
                             });
 
-                            await GitLostLog(new LogMessage(LogSeverity.Info, "Client", $"New post found, send to {JsonHandler.channels.Count} channel(s)"));
+                            await GitLostLog(new LogMessage(LogSeverity.Info, "Client", $"New post found, sended to {JsonHandler.channels.Count} channel(s)"));
                         }
                         else
                         {
-                            await GitLostLog(new LogMessage(LogSeverity.Info, "Client", $"No new post found"));
+                            await GitLostLog(new LogMessage(LogSeverity.Info, "Client", "No new post found"));
                         }
                     }
                 }
             }
         }
-
-        #endregion
     }
 }

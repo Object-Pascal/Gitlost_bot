@@ -1,7 +1,6 @@
 ﻿using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
-using Gitlost_bot.Handlers.Bots.Gitlost;
 using Microsoft.Extensions.DependencyInjection;
 
 using System;
@@ -10,25 +9,12 @@ using System.Threading.Tasks;
 
 namespace Gitlost_bot.Handlers.Bots
 {
-    public enum BotState
-    {
-        Ready,
-        Running,
-        Stopped
-    }
-
-    public enum PostState
-    {
-        FirstBoot,
-        Ready
-    }
-
     class GitLostHandler
     {
         public DiscordSocketClient _client { get; private set; }
+        private Func<LogMessage, Task> logCallback;
         private CommandService _commands;
         private IServiceProvider _services;
-        private GitLostTimedChecker gitlostTimer;
 
         public BotState state { get; private set; }
 
@@ -43,10 +29,13 @@ namespace Gitlost_bot.Handlers.Bots
         public async Task Start(Func<LogMessage, Task> logCallback)
         {
             state = BotState.Running;
-            string token = "NDkxOTk4OTY1Nzg5NzUzMzY0.DoQDUA.tl6dgF_3Y3rjHl6ac2tmZXxQDGE";
+
+            string token = "NDkxOTk4OTY1Nzg5NzUzMzY0.Dppk6A.q21w_6RwskXb2x2Mdy744q72LQ4"; 
+            //throw new NotImplementedException("Enter your bot token in the string variable above first to enable functionality!");
 
             await _client.SetGameAsync("v1.0.1");
 
+            this.logCallback = logCallback;
             _client.Log += logCallback;
             _client.MessageReceived += HandleCommandAsync;
 
@@ -65,12 +54,19 @@ namespace Gitlost_bot.Handlers.Bots
 
             if (message.HasStringPrefix("!gitlost ", ref argPos) || message.HasStringPrefix("!gl ", ref argPos))
             {
-                SocketCommandContext context = new SocketCommandContext(_client, message);
+                try
+                {
+                    SocketCommandContext context = new SocketCommandContext(_client, message);
 
-                IResult result = await _commands.ExecuteAsync(context, argPos, _services);
+                    IResult result = await _commands.ExecuteAsync(context, argPos, _services);
 
-                if (!result.IsSuccess)
-                    Console.WriteLine(result.ErrorReason);
+                    if (!result.IsSuccess)
+                        await logCallback.Invoke(new LogMessage(LogSeverity.Error, "Execution", result.ErrorReason));
+                }
+                catch (Exception e)
+                {
+                    await logCallback.Invoke(new LogMessage(LogSeverity.Critical, "Execution", e.Message));
+                }
             }
         }
 

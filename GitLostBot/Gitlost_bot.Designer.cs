@@ -1,6 +1,6 @@
 ﻿namespace Gitlost_bot
 {
-    partial class BotManager
+    partial class Gitlost_bot
     {
         /// <summary>
         /// Required designer variable.
@@ -28,23 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnStartGitLostBot = new System.Windows.Forms.Button();
             this.txtGitLostLog = new System.Windows.Forms.TextBox();
             this.btnStopGitLostBot = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tbPageScraper = new System.Windows.Forms.TabPage();
+            this.btnStartGitLostBot = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tbPageScraper.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnStartGitLostBot
-            // 
-            this.btnStartGitLostBot.Location = new System.Drawing.Point(240, 6);
-            this.btnStartGitLostBot.Name = "btnStartGitLostBot";
-            this.btnStartGitLostBot.Size = new System.Drawing.Size(100, 23);
-            this.btnStartGitLostBot.TabIndex = 0;
-            this.btnStartGitLostBot.Text = "Start bot";
-            this.btnStartGitLostBot.UseVisualStyleBackColor = true;
             // 
             // txtGitLostLog
             // 
@@ -80,9 +71,9 @@
             // 
             // tbPageScraper
             // 
+            this.tbPageScraper.Controls.Add(this.btnStartGitLostBot);
             this.tbPageScraper.Controls.Add(this.txtGitLostLog);
             this.tbPageScraper.Controls.Add(this.btnStopGitLostBot);
-            this.tbPageScraper.Controls.Add(this.btnStartGitLostBot);
             this.tbPageScraper.Location = new System.Drawing.Point(4, 22);
             this.tbPageScraper.Name = "tbPageScraper";
             this.tbPageScraper.Padding = new System.Windows.Forms.Padding(3);
@@ -90,6 +81,15 @@
             this.tbPageScraper.TabIndex = 0;
             this.tbPageScraper.Text = "Gitlost bot";
             this.tbPageScraper.UseVisualStyleBackColor = true;
+            // 
+            // btnStartGitLostBot
+            // 
+            this.btnStartGitLostBot.Location = new System.Drawing.Point(240, 6);
+            this.btnStartGitLostBot.Name = "btnStart";
+            this.btnStartGitLostBot.Size = new System.Drawing.Size(100, 23);
+            this.btnStartGitLostBot.TabIndex = 2;
+            this.btnStartGitLostBot.Text = "Start bot";
+            this.btnStartGitLostBot.UseVisualStyleBackColor = true;
             // 
             // Gitlost_bot
             // 
@@ -113,6 +113,7 @@
         private System.Windows.Forms.Button btnStopGitLostBot;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tbPageScraper;
+        private System.Windows.Forms.Button btnStart;
     }
 }
 
